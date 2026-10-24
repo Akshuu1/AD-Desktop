@@ -1,0 +1,83 @@
+{
+  "name": "athena5",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "app/app.js",
+  "scripts": {
+    "dev": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "backend": "npm start --prefix backend",
+    "lint": "eslint frontend/",
+    "preview": "npm run preview --prefix frontend",
+    "electron": "electron ./app/app.js",
+    "package:app": "npm run build && electron-builder --dir",
+    "build:dmg": "npm run build && electron-builder --mac dmg"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "lucide-react": "^1.47.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "electron": "^44.3.0",
+    "electron-builder": "^26.15.3",
+    "eslint": "^10.10.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.6",
+    "globals": "^17.12.0",
+    "vite": "^8.3.0"
+  },
+  "build": {
+    "appId": "com.athena.exam",
+    "productName": "Athena",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "app/**/*",
+      "backend/**/*",
+      "dist/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "identity": null,
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "dir",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "dmg": {
+      "title": "Athena Installer",
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  }
+}
